@@ -1,0 +1,8 @@
+[Credentials]
+aws_access_key_id = <access_key>
+aws_secret_access_key = <secret_access_key>
+
+[Boto]
+ec2_region_name = eu-west-1
+autoscale_region_name = eu-west-1
+elb_region_name = eu-west-1
