@@ -8,4 +8,4 @@ example: recycle_autoscale_group my-application-autoscale-group your-application
 
 This script temporarily increases a group's desired_capacity and max_size, 
 recycles (terminates) ec2 instances in the group one by one while keeping the number of 'InService'
-steady. As soon as recycling is complete group configuration is set to its previous values.
+instances steady. As soon as recycling is complete group configuration is set to its previous values.
