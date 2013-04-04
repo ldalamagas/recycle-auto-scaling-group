@@ -48,6 +48,11 @@ def get_autoscale_group(autoscale_group_name):
     groups = connection.get_all_groups(names=[autoscale_group_name])
     return groups[0]
 
+def get_autoscale_groups():
+    connection = autoscale.connect_to_region(config.get_value('Boto', 'autoscale_region_name'))
+    groups = connection.get_all_groups()
+    return groups
+
 def there_are_suspended_processes(autoscale_group):
     suspended_processes = autoscale_group.suspended_processes
     return True if len(suspended_processes) > 0 else False
