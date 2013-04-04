@@ -36,6 +36,7 @@ About Autoscale Group
 def autoscale_group_exists(autoscale_group_name):
     connection = autoscale.connect_to_region(config.get_value('Boto', 'autoscale_region_name'))
     groups = connection.get_all_groups(names=[autoscale_group_name])
+    connection.close()
     return True if len(groups) == 1 else False
 
 def is_valid_autoscale_region(region_name):
@@ -46,11 +47,13 @@ def is_valid_autoscale_region(region_name):
 def get_autoscale_group(autoscale_group_name):
     connection = autoscale.connect_to_region(config.get_value('Boto', 'autoscale_region_name'))
     groups = connection.get_all_groups(names=[autoscale_group_name])
+    connection.close()
     return groups[0]
 
 def get_autoscale_groups():
     connection = autoscale.connect_to_region(config.get_value('Boto', 'autoscale_region_name'))
     groups = connection.get_all_groups()
+    connection.close()
     return groups
 
 def there_are_suspended_processes(autoscale_group):
@@ -68,11 +71,13 @@ def is_valid_elb_region(region_name):
 def get_elb(load_balancer_name):
     connection = elb.connect_to_region(config.get_value('Boto', 'elb_region_name'))
     load_balancers = connection.get_all_load_balancers(load_balancer_names=[load_balancer_name])
+    connection.close()
     return load_balancers[0]
 
 def elb_exists(load_balancer_name):
     connection = elb.connect_to_region(config.get_value('Boto', 'elb_region_name'))
     load_balancers = connection.get_all_load_balancers(load_balancer_names=[load_balancer_name])
+    connection.close()
     return True if len(load_balancers) == 1 else False
 
 def get_elb_instance_states(load_balancer_name):
@@ -122,6 +127,7 @@ def is_valid_ec2_region(region_name):
 def terminate_instance(instance_id):
     connection = ec2.connect_to_region(config.get_value('Boto', 'ec2_region_name'))
     connection.terminate_instances(instance_ids=[instance_id])
+    connection.close()
 
 def recycle_autoscale_group(autoscale_group_name):
     
